@@ -22,6 +22,13 @@ jobs:
           command: |
               ./gradlew clean assembleDebug
               ./gradlew clean assembleRelease
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          paths:
+            - vendor/bundle
+          key: gems-{{ checksum "Gemfile.lock" }}
       - run:
           name: Run danger
           command: bundle exec danger
