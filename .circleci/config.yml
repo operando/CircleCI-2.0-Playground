@@ -20,6 +20,7 @@ jobs:
       - run:
           name: Build
           command: |
+              echo $CIRCLE_BUILD_NUM
               echo $CIRCLE_BRANCH
               echo $CI_PULL_REQUEST
       - restore_cache:
