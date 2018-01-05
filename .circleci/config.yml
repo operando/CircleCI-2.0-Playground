@@ -23,6 +23,8 @@ jobs:
               echo $CIRCLE_BUILD_NUM
               echo $CIRCLE_BRANCH
               echo $CI_PULL_REQUEST
+              echo $CI
+              if ([ "$CIRCLE_BRANCH" == "master" ] && [ -z "$CI_PULL_REQUEST" ]) ; echo hogehoge ; fi
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
       - run: bundle install --path vendor/bundle
