@@ -22,6 +22,11 @@ jobs:
           command: |
               ./gradlew clean assembleDebug --daemon --console=plain
               ./gradlew clean assembleRelease --daemon --console=plain
+              echo $CIRCLE_BUILD_NUM
+              echo $CIRCLE_BRANCH
+              echo $CI_PULL_REQUEST
+              echo $CI
+              if ([ "$CIRCLE_BRANCH" == "master" ] && [ -z "$CI_PULL_REQUEST" ]) ; then echo hogehoge ; fi
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
       - run: bundle install --path vendor/bundle
