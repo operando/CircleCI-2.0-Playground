@@ -20,8 +20,8 @@ jobs:
       - run:
           name: Build
           command: |
-              ./gradlew clean assembleDebug
-              ./gradlew clean assembleRelease
+              ./gradlew clean assembleDebug --daemon --console=plain
+              ./gradlew clean assembleRelease --daemon --console=plain
       - restore_cache:
           key: gems-{{ checksum "Gemfile.lock" }}
       - run: bundle install --path vendor/bundle
